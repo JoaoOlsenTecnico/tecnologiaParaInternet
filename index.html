@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>J&I Tech</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
+    <link rel="stylesheet" href="Montserrat-Regular.ttf">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://www.jqueryscript.net/demo/Instagram-Photos-Without-API-instagramFeed/jquery.instagramFeed.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqPsgzq9zNT3zFuG0-hs3P_mDB1xaA41w&callback=initMap" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+   
+</head>
+<style>
+    @font-face {
+        font-family: padrao;
+        src: url("Montserrat-Regular.ttf") format('opentype');
+    }
+    * {
+        font-family: padrao;
+    }
+    body{
+        background-image: linear-gradient(to right, #9933ff , #6600cc);
+        overflow: hidden;
+    }
+    .sessao {
+        text-align: center;
+        color: white;
+        transition: opacity 0.5s;
+    }
+    .botao {
+        background-color: #ffffff00;
+        color: white;
+        border: 1px solid white;
+        padding: 1vw 3vw;
+        font-size: 2vw;
+    }
+    #map {
+            height: 40vw;
+        }
+    .slider-instagram {
+        width: 70vw;
+        margin-left: 16vw;
+    }
+    .slider-instagram img {
+        width: 15vw;
+    }
+    .col-lg-3.col-md-6.col-12.slick-slide.slick-active {
+        cursor: pointer;
+    }
+    #mySidenavLogado a {
+        font-size: 1.2vw !important;
+    }
+    @media screen and (max-width: 1024px) { 
+        h1 {
+            font-size: 15vw;
+            line-height: 1vw;
+        }
+        h3 {
+            font-size: 6vw;
+            line-height: 1vw;
+        }
+        #inicial{
+            margin-top: 50vw;
+            display: block;
+            position: relative;
+            
+        }
+        .botao {
+            background-color: #ffffff00;
+            color: white;
+            border: 1px solid white;
+            padding: 3vw 13vw;
+            font-size: 6vw;
+        }
+        #map {
+            height: 100vw;
+        }
+        .slider-instagram {
+            width: 100vw;
+            margin-left: -2vw;
+        }
+        .slider-instagram img {
+            width: 90vw;
+        }
+        .col-lg-3.col-md-6.col-12.slick-slide.slick-active {
+            cursor: pointer;
+        }
+        #mySidenavLogado a {
+            font-size: 1.2vw !important;
+        }
+    }
+    #maps {
+        display: none;
+    }
+    #insta{
+        display: none;
+        
+    }
+    .voltar{
+        cursor: pointer;
+    }
+
+</style>
+<script>
+    let map;
+
+    function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+    });
+    }
+    function openInsta(){
+        document.getElementById("inicial").style.opacity = "0";
+        setTimeout(function(){
+            document.getElementById("inicial").style.display = "none";
+            document.getElementById("maps").style.display = "none";
+            document.getElementById("insta").style.display = "block";
+            setTimeout(function(){document.getElementById("insta").style.opacity = "1";}, 100);
+        }, 500); 
+    }
+    function openMaps(){
+        document.getElementById("inicial").style.opacity = "0";
+        setTimeout(function(){
+            document.getElementById("inicial").style.display = "none";
+            document.getElementById("maps").style.display = "block";
+            document.getElementById("insta").style.display = "none";
+            setTimeout(function(){document.getElementById("maps").style.opacity = "1";}, 100);
+        }, 500);    
+    }
+    function openInicio(){
+        document.getElementById("maps").style.opacity = "0";
+        document.getElementById("insta").style.opacity = "0";
+        setTimeout(function(){
+            document.getElementById("inicial").style.display = "block";
+            document.getElementById("maps").style.display = "none";
+            document.getElementById("insta").style.display = "none";
+            setTimeout(function(){document.getElementById("inicial").style.opacity = "1";}, 100);
+        }, 500); 
+    }
+    window.onload = function(){
+        document.getElementsByClassName("logo-topo")[0].style.top = "0vw";
+        document.getElementsByClassName("nav-botoes")[0].style.opacity = "1";
+    }
+</script>
+<style>
+    .logo-topo{
+        opacity: 1;
+        transition: top 2s;
+        top: 10vw;
+        position: relative;
+    }
+    .nav-botoes{
+        opacity: 0;
+        transition: opacity 2s;
+    }
+    #maps {
+        opacity: 0;
+    }
+    #insta {
+        opacity: 0;
+    }
+</style>
+<body>
+    <section id="inicial" class="sessao">
+        <div class="logo-topo">
+            <h1>J&I Tech</h1>
+            <h3>Tecnologia e inovação</h3>
+        </div>
+        <div class="nav-botoes">
+            <button class="botao" id="mapa" onclick="openMaps()">Mapa</button>
+            <button class="botao" id="fotos" onclick="openInsta()">Nasa</button>
+        </div>
+    </section>
+
+    <section id="maps" class="sessao">
+        <div class="topo">
+            <div class="voltar" onclick="openInicio()"> 
+               <i class="fas fa-chevron-circle-left"></i> 
+               <span>Voltar</span> 
+            </div>
+            <h1>Mapa</h1>
+        </div>
+        <div id="map"></div>
+    </section>
+
+    <section id="insta" class="sessao">
+        <div class="topo">
+            <div class="voltar" onclick="openInicio()">
+                <i class="fas fa-chevron-circle-left"></i> 
+                <span>Voltar</span> 
+             </div>
+            <h1>Nasa</h1>
+        </div>
+        <div id="nasa">
+            
+        </div>
+    </section>
+</body>
+<script>
+    var url = "https://api.nasa.gov/planetary/apod?api_key=baEhg5J1kxWI2vTn9NhQf8V4f8o8y0MQVRgXFAeE"
+    $.ajax({
+            url,
+            type: "GET",
+            success: function (data) {
+                console.log(data);
+                document.getElementById("nasa").insertAdjacentHTML("afterbegin"," <img style='width: 95vw;' src='"+ data.url +"'/> <p style='overflow: scroll;max-height: 71vw;'>"+ data.explanation +"</p>")
+            },
+            error: function (data) {
+                console.warn(data);
+            },
+        });
+</script>
+</html>
